@@ -147,10 +147,10 @@ shared_ptr<FSEGTGameMap> FSEGTAMapGenerator::generate(shared_ptr<FSEGTAMapGenera
 
 		}
 
-           cout << std::to_string(tileIndex);
+           //cout << std::to_string(tileIndex);
         }
 
-       cout << endl;
+       //cout << endl;
     }
 
 	return gameMap;

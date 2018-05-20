@@ -12,7 +12,7 @@ shared_ptr<FSCObject> FSGTAMazeObjectGenerator::generate(shared_ptr<FSEGTGameMap
 
 	auto serializedMaze = make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh");
 
-	cout << "Map Object Generator" << endl;
+	//cout << "Map Object Generator" << endl;
 
 	int dotsCount = 0;
 
@@ -61,9 +61,9 @@ shared_ptr<FSCObject> FSGTAMazeObjectGenerator::generate(shared_ptr<FSEGTGameMap
 
 			}
 
-			cout << tile;
+			//cout << tile;
 		}
-		cout << endl;
+		//cout << endl;
 	}
 
 	serializedMaze->append(string("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/com.demensdeum.testenvironment.blocktextue.bmp"));
