@@ -28,7 +28,9 @@ public:
     static shared_ptr<FSEGTGameMap> generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext);
 
 private:
-    static void drawFreeTilesAtXY(shared_ptr<FSEGTGameMap> gameMap, shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY);
+	static void drawFreeTilesAtXY(shared_ptr<FSEGTGameMap> gameMap, shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY);
+	static void firstTileDraw(shared_ptr<FSEGTGameMap> gameMap, shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY);
+	static void lastTileDraw(shared_ptr<FSEGTGameMap> gameMap, shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY);
 
 };
 

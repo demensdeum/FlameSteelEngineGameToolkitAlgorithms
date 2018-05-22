@@ -84,6 +84,8 @@ shared_ptr<FSEGTGameMap> FSEGTAMapGenerator::generate(shared_ptr<FSEGTAMapGenera
 
     FSEGTAMapGenerator::drawFreeTilesAtXY(gameMap, params, cursorX, cursorY);
 
+	FSEGTAMapGenerator::firstTileDraw(gameMap, params, cursorX, cursorY);
+
     for (auto x = 0; x < maxIterations; x++) {
 
         int cursorDirection = FSCUtils::FSCRandomInt(FSEGTSimpleDirectionCount);
@@ -132,6 +134,8 @@ shared_ptr<FSEGTGameMap> FSEGTAMapGenerator::generate(shared_ptr<FSEGTAMapGenera
 
     FSEGTAMapGenerator::drawFreeTilesAtXY(gameMap, params, cursorX, cursorY);
 
+	FSEGTAMapGenerator::lastTileDraw(gameMap, params, cursorX, cursorY);
+
     // printout 
 
     for (int y = 0; y < gameMap->width; y++) {
@@ -147,14 +151,23 @@ shared_ptr<FSEGTGameMap> FSEGTAMapGenerator::generate(shared_ptr<FSEGTAMapGenera
 
 		}
 
-           //cout << std::to_string(tileIndex);
+           cout << std::to_string(tileIndex);
         }
 
-       //cout << endl;
+       cout << endl;
     }
 
 	return gameMap;
 }
+
+void FSEGTAMapGenerator::firstTileDraw(shared_ptr<FSEGTGameMap> gameMap, shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY) {
+
+}
+
+void FSEGTAMapGenerator::lastTileDraw(shared_ptr<FSEGTGameMap> gameMap, shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY) {
+
+}
+
 
 void FSEGTAMapGenerator::drawFreeTilesAtXY(shared_ptr<FSEGTGameMap> gameMap, shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY) {
 
