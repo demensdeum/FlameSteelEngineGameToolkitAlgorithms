@@ -14,6 +14,7 @@
 #ifndef FSEGTAMAPGENERATOR_H
 #define FSEGTAGENERATOR_H
 
+class FSCObjects;
 class FSEGTGameMap;
 class FSEGTObjectsContext;
 class FSEGTAMapGeneratorParams;
@@ -29,7 +30,7 @@ namespace Algorithms {
 class MapGenerator {
 
 public:
-	static shared_ptr<FSEGTGameMap> generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext);
+	static shared_ptr<FSEGTGameMap> generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext, shared_ptr<FSCObjects> objects);
 
 private:
 

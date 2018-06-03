@@ -26,7 +26,7 @@
 using namespace std;
 using namespace FlameSteelEngine::GameToolkit::Algorithms;
 
-shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext) {
+shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext, shared_ptr<FSCObjects> objects) {
 
   if (params.get() == nullptr) {
 
