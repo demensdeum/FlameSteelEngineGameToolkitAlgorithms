@@ -22,11 +22,32 @@
 #include <FlameSteelEngineGameToolkit/Data/Components/FSEGTFactory.h>
 #include <FlameSteelEngineGameToolkitAlgorithms/Const/Const.h>
 #include <iostream>
+#include <set>
 
 using namespace std;
 using namespace FlameSteelEngine::GameToolkit::Algorithms;
 
-shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext, shared_ptr<FSCObjects> objects) {
+namespace FlameSteelEngine {
+namespace GameToolkit {
+namespace Algorithms {
+
+struct MapGeneratorFreeTile {
+	int x;
+	int y;
+};
+
+inline bool operator<(const MapGeneratorFreeTile& lhs, const MapGeneratorFreeTile& rhs)
+{
+  return lhs.x < rhs.x && lhs.y < lhs.y;
+}
+
+};
+};
+};
+
+shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext) {
+
+	set<MapGeneratorFreeTile> freeTiles;
 
   if (params.get() == nullptr) {
 
@@ -108,6 +129,13 @@ shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorPar
     for (auto y = 0; y < cursorSteps; y++) {
 
       MapGenerator::drawFreeTilesAtXY(gameMap, params, cursorX, cursorY, objectsContext);
+	MapGenerator::putObjectAtXYIfCan(gameMap, params, cursorX, cursorY, objectsContext);
+
+	auto freeTile = MapGeneratorFreeTile();
+	freeTile.x = cursorX;
+	freeTile.y = cursorY;
+
+	freeTiles.insert(freeTile);
 
       switch (cursorDirection) {
 
@@ -208,14 +236,37 @@ void MapGenerator::drawFreeTilesAtXY(
       int putTileX = x + cursorX;
       int putTileY = y + cursorY;
 
-      if (putTileX < 2 || putTileY < 2 || putTileX > gameMap->width - 2 ||
-          putTileY > gameMap->height - 2) {
+      if (putTileX < 2 || putTileY < 2 || putTileX > gameMap->width - 2 || putTileY > gameMap->height - 2) {
         continue;
       }
 
       gameMap->setTileAtXY(freeTileIndex, putTileX, putTileY);
+
     }
   }
 
   gameMap->setTileAtXY(freeTileIndex, cursorX, cursorY);
+}
+
+void MapGenerator::putObjectAtXYIfCan(shared_ptr<FSEGTGameMap> gameMap,
+                                shared_ptr<FSEGTAMapGeneratorParams> params,
+                                int cursorX, 
+					int cursorY,
+					shared_ptr<FSEGTObjectsContext> objectsContext)
+{
+	auto objects = params->objects;
+
+	if (objects->size() > 0 && FSCUtils::FSCRandomInt(params->gameplayObjectRespawnChance) == 1)
+	{
+		auto object = objects->objectAtIndex(0);
+
+		auto objectPosition = FSEGTUtils::getObjectPosition(object);
+		objectPosition->x = cursorX;
+		objectPosition->z = cursorY;
+
+		objectsContext->addObject(object);
+
+		objects->removeObjectAtIndex(0);
+	}
+
 }

@@ -17,6 +17,7 @@
 class FSCObjects;
 class FSEGTGameMap;
 class FSEGTObjectsContext;
+struct MapGeneratorFreeTile;
 class FSEGTAMapGeneratorParams;
 
 #include <memory>
@@ -30,9 +31,14 @@ namespace Algorithms {
 class MapGenerator {
 
 public:
-	static shared_ptr<FSEGTGameMap> generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext, shared_ptr<FSCObjects> objects);
+	static shared_ptr<FSEGTGameMap> generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext);
 
 private:
+	static void putObjectAtXYIfCan(shared_ptr<FSEGTGameMap> gameMap,
+                                shared_ptr<FSEGTAMapGeneratorParams> params,
+                                int cursorX, 
+					int cursorY,
+					shared_ptr<FSEGTObjectsContext> objectsContext);
 
 	static void drawFreeTilesAtXY(shared_ptr<FSEGTGameMap> gameMap,
                                 shared_ptr<FSEGTAMapGeneratorParams> params,

@@ -25,22 +25,24 @@ class FSEGTAMapGeneratorParams {
 public:
     FSEGTAMapGeneratorParams();
     
-    int freeTileIndex;
-    int solidTileIndex;
+    int freeTileIndex = 0;
+    int solidTileIndex = 0;
     
     vector<shared_ptr<FSCObject> > tiles;
     
-    int maxIterations;
-    int maxLineLength;
+    int maxIterations = 0;
+    int maxLineLength = 0;
     
-    int minCursorSize;
-    int maxCursorSize;
+    int minCursorSize = 0;
+    int maxCursorSize = 0;
     
-    int minFreeSpace;
-    int maxFreeSpace;
+    int minFreeSpace = 0;
+    int maxFreeSpace = 0;
     
-    int difficulty;
-    int gameplayObjectRespawnChance;
+    int difficulty = 0;
+    int gameplayObjectRespawnChance = 0;
+
+	shared_ptr<FSCObjects> objects;
     
 private:
 

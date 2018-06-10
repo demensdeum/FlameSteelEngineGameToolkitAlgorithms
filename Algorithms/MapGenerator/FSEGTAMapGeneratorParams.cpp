@@ -13,18 +13,21 @@
 
 #include "FSEGTAMapGeneratorParams.h"
 
+#include <memory>
+#include <FlameSteelCore/FSCObjects.h>
+
 FSEGTAMapGeneratorParams::FSEGTAMapGeneratorParams() {
     
-    freeTileIndex = 0;
-    solidTileIndex = 0;
+	freeTileIndex = 0;
+	solidTileIndex = 0;
     
-    maxIterations = 0;
-    maxLineLength = 0;
+	maxIterations = 0;
+	maxLineLength = 0;
     
-    minCursorSize = 0;
-    maxCursorSize = 0;
+	minCursorSize = 0;
+	maxCursorSize = 0;
     
-    minFreeSpace = 0;
-    maxFreeSpace = 0; 
+	minFreeSpace = 0;
+	maxFreeSpace = 0; 
     
 }
