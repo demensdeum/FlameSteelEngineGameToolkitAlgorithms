@@ -41,8 +41,10 @@ public:
     
     int difficulty = 0;
     int gameplayObjectRespawnChance = 0;
+	int enemyRespawnChance = 0;
 
 	shared_ptr<FSCObjects> objects;
+	shared_ptr<FSCObjects> enemies;
     
 private:
 

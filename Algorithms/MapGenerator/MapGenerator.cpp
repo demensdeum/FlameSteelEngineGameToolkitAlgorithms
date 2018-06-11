@@ -269,4 +269,19 @@ void MapGenerator::putObjectAtXYIfCan(shared_ptr<FSEGTGameMap> gameMap,
 		objects->removeObjectAtIndex(0);
 	}
 
+	auto enemies = params->enemies;
+
+	if (enemies->size() > 0 && FSCUtils::FSCRandomInt(params->enemyRespawnChance) == 1)
+	{
+		auto enemy = enemies->objectAtIndex(0);
+
+		auto enemyPosition = FSEGTUtils::getObjectPosition(enemy);
+		enemyPosition->x = cursorX;
+		enemyPosition->z = cursorY;
+
+		objectsContext->addObject(enemy);
+
+		enemies->removeObjectAtIndex(0);
+	}
+
 }
