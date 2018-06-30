@@ -271,6 +271,11 @@ void MapGenerator::putObjectAtXYIfCan(shared_ptr<FSEGTGameMap> gameMap,
 
 	auto enemies = params->enemies;
 
+	if (enemies.get() == nullptr)
+	{
+		throw logic_error("Enemies are nil in map parameters");
+	}
+
 	if (enemies->size() > 0 && FSCUtils::FSCRandomInt(params->enemyRespawnChance) == 1)
 	{
 		auto enemy = enemies->objectAtIndex(0);
