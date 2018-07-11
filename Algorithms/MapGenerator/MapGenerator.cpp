@@ -23,6 +23,8 @@
 #include <FlameSteelEngineGameToolkitAlgorithms/Const/Const.h>
 #include <iostream>
 #include <set>
+#include <FlameSteelEngineGameToolkitAlgorithms/Algorithms/MazeObjectGenerator/FSGTAMazeObjectGenerator.h>
+#include <FlameSteelEngineGameToolkit/Data/Components/SerializedModel/FSEGTSerializedModel.h>
 
 using namespace std;
 using namespace FlameSteelEngine::GameToolkit::Algorithms;
@@ -176,12 +178,14 @@ shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorPar
 
   MapGenerator::drawFreeTilesAtXY(gameMap, params, cursorX, cursorY, objectsContext);
 
+	auto serializedCardModelString = FSGTAMazeObjectGenerator::generateCube(cursorX, cursorY);
+
 	auto endPoint = FSEGTFactory::makeOnSceneObject(
             make_shared<string>(ConstMapGameplayEntityClass.c_str()),
             make_shared<string>(ConstMapEntityEndPoint.c_str()),
-            make_shared<string>(),
-            make_shared<string>(),
-		make_shared<string>(),
+            shared_ptr<string>(),
+            shared_ptr<string>(),
+		serializedCardModelString,
             cursorX, 0, cursorY,
             1, 1, 1,
             0, 0, 0,
