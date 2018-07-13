@@ -8,15 +8,16 @@
 
 using namespace std;
 
-shared_ptr<string> FSGTAMazeObjectGenerator::generateCube(int x, int y)
+shared_ptr<string> FSGTAMazeObjectGenerator::generateCube(int x, int y, shared_ptr<string> textureName)
 {
 	shared_ptr<string> serializedModel = make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh");
-	putTopWallAtXY(serializedModel, 0, 1, 0);
-	putLeftWallAtXY(serializedModel, 1, 0, 4);
-	putRightWallAtXY(serializedModel, -1, 0, 8);
-	putDownWallAtXY(serializedModel, 0, -1, 12);
+	putTopWallAtXY(serializedModel, x, y + 1, 0);
+	putLeftWallAtXY(serializedModel, x + 1, y, 4);
+	putRightWallAtXY(serializedModel, x -1, y, 8);
+	putDownWallAtXY(serializedModel, x, x - 1, 12);
 	putFloorAtXY(serializedModel, 0, 0, 0);
-	serializedModel->append(string("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/com.demensdeum.testenvironment.enemy.bmp"));
+	serializedModel->append(string("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/"));
+	serializedModel->append(*textureName);
 
 	return serializedModel;
 }

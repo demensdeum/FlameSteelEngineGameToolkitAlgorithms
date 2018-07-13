@@ -12,7 +12,7 @@ class FSGTAMazeObjectGenerator {
 
 public:
 	static shared_ptr<FSCObject> generate(shared_ptr<FSEGTGameMap> gameMap);
-	static shared_ptr<string> generateCube(int x, int y);
+	static shared_ptr<string> generateCube(int x, int y, shared_ptr<string> textureName);
 
 private:
 	static void putFloorAtXY(shared_ptr<string> serializedMaze, int x, int y, int dotsCount);
