@@ -14,8 +14,12 @@
 #ifndef FSEGTAMAPGENERATOR_H
 #define FSEGTAGENERATOR_H
 
-class FSCObjects;
-class FSEGTGameMap;
+class Objects;
+namespace FlameSteelEngine {
+namespace GameToolkit {
+class GameMap;
+}
+}
 class FSEGTObjectsContext;
 struct MapGeneratorFreeTile;
 class FSEGTAMapGeneratorParams;
@@ -23,6 +27,7 @@ class FSEGTAMapGeneratorParams;
 #include <memory>
 
 using namespace std;
+using namespace FlameSteelEngine::GameToolkit;
 
 namespace FlameSteelEngine {
 namespace GameToolkit {
@@ -31,16 +36,16 @@ namespace Algorithms {
 class MapGenerator {
 
 public:
-	static shared_ptr<FSEGTGameMap> generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext);
+	static shared_ptr<GameMap> generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext);
 
 private:
-	static void putObjectAtXYIfCan(shared_ptr<FSEGTGameMap> gameMap,
+	static void putObjectAtXYIfCan(shared_ptr<GameMap> gameMap,
                                 shared_ptr<FSEGTAMapGeneratorParams> params,
                                 int cursorX, 
 					int cursorY,
 					shared_ptr<FSEGTObjectsContext> objectsContext);
 
-	static void drawFreeTilesAtXY(shared_ptr<FSEGTGameMap> gameMap,
+	static void drawFreeTilesAtXY(shared_ptr<GameMap> gameMap,
                                 shared_ptr<FSEGTAMapGeneratorParams> params,
                                 int cursorX, 
 					int cursorY,

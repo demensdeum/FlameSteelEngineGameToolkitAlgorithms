@@ -16,7 +16,7 @@
 
 #include <FlameSteelCore/FSCUtils.h>
 #include <FlameSteelEngineGameToolkit/Controllers/FSEGTObjectsContext.h>
-#include <FlameSteelEngineGameToolkit/Data/Components/GameMap/FSEGTGameMap.h>
+#include <FlameSteelEngineGameToolkit/Data/Components/GameMap/GameMap.h>
 #include <FlameSteelEngineGameToolkit/Data/FSEGTSimpleDirection.h>
 #include <FlameSteelEngineGameToolkit/Utils/FSEGTUtils.h>
 #include <FlameSteelEngineGameToolkit/Data/Components/FSEGTFactory.h>
@@ -47,7 +47,7 @@ inline bool operator<(const MapGeneratorFreeTile& lhs, const MapGeneratorFreeTil
 };
 };
 
-shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext) {
+shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> params, shared_ptr<FSEGTObjectsContext> objectsContext) {
 
 	set<MapGeneratorFreeTile> freeTiles;
 
@@ -66,7 +66,7 @@ shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorPar
     exit(1);
   }
 
-  auto gameMap = make_shared<FSEGTGameMap>();
+  auto gameMap = make_shared<GameMap>();
 
   auto solidTileIndex = params->solidTileIndex;
 
@@ -217,7 +217,7 @@ shared_ptr<FSEGTGameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorPar
 }
 
 void MapGenerator::drawFreeTilesAtXY(
-    shared_ptr<FSEGTGameMap> gameMap,
+    shared_ptr<GameMap> gameMap,
     shared_ptr<FSEGTAMapGeneratorParams> params, int cursorX, int cursorY,
     shared_ptr<FSEGTObjectsContext> objectsContext) {
 
@@ -252,7 +252,7 @@ void MapGenerator::drawFreeTilesAtXY(
   gameMap->setTileAtXY(freeTileIndex, cursorX, cursorY);
 }
 
-void MapGenerator::putObjectAtXYIfCan(shared_ptr<FSEGTGameMap> gameMap,
+void MapGenerator::putObjectAtXYIfCan(shared_ptr<GameMap> gameMap,
                                 shared_ptr<FSEGTAMapGeneratorParams> params,
                                 int cursorX, 
 					int cursorY,

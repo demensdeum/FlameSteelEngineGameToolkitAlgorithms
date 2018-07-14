@@ -17,9 +17,10 @@
 #include <vector>
 #include <memory>
 
-#include <FlameSteelCore/FSCObject.h>
+#include <FlameSteelCore/Object.h>
 
 using namespace std;
+using namespace FlameSteelCore;
 
 class FSEGTAMapGeneratorParams {
 public:
@@ -28,7 +29,7 @@ public:
     int freeTileIndex = 0;
     int solidTileIndex = 0;
     
-    vector<shared_ptr<FSCObject> > tiles;
+    vector<shared_ptr<Object> > tiles;
     
     int maxIterations = 0;
     int maxLineLength = 0;
@@ -43,8 +44,8 @@ public:
     int gameplayObjectRespawnChance = 0;
 	int enemyRespawnChance = 0;
 
-	shared_ptr<FSCObjects> objects;
-	shared_ptr<FSCObjects> enemies;
+	shared_ptr<Objects> objects;
+	shared_ptr<Objects> enemies;
     
 private:
 

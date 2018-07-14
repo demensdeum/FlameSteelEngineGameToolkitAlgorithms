@@ -14,7 +14,7 @@
 #include "FSEGTAMapGeneratorParams.h"
 
 #include <memory>
-#include <FlameSteelCore/FSCObjects.h>
+#include <FlameSteelCore/Objects.h>
 
 FSEGTAMapGeneratorParams::FSEGTAMapGeneratorParams() {
     

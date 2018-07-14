@@ -5,13 +5,23 @@
 
 using namespace std;
 
-class FSCObject;
-class FSEGTGameMap;
+namespace FlameSteelCore {
+class Object;
+};
+
+namespace FlameSteelEngine {
+namespace GameToolkit {
+class GameMap;
+}
+}
+
+using namespace FlameSteelCore;
+using namespace FlameSteelEngine::GameToolkit;
 
 class FSGTAMazeObjectGenerator {
 
 public:
-	static shared_ptr<FSCObject> generate(shared_ptr<FSEGTGameMap> gameMap);
+	static shared_ptr<Object> generate(shared_ptr<GameMap> gameMap);
 	static shared_ptr<string> generateCube(int x, int y, shared_ptr<string> textureName);
 
 private:

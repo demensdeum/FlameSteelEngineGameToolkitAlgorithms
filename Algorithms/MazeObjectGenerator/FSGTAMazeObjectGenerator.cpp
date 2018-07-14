@@ -1,7 +1,7 @@
 #include <memory>
 #include "FSGTAMazeObjectGenerator.h"
-#include <FlameSteelCore/FSCObject.h>
-#include <FlameSteelEngineGameToolkit/Data/Components/GameMap/FSEGTGameMap.h>
+#include <FlameSteelCore/Object.h>
+#include <FlameSteelEngineGameToolkit/Data/Components/GameMap/GameMap.h>
 #include <FlameSteelEngineGameToolkit/Data/Components/FSEGTFactory.h>
 
 #include <iostream>
@@ -22,7 +22,7 @@ shared_ptr<string> FSGTAMazeObjectGenerator::generateCube(int x, int y, shared_p
 	return serializedModel;
 }
 
-shared_ptr<FSCObject> FSGTAMazeObjectGenerator::generate(shared_ptr<FSEGTGameMap> gameMap) {
+shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMap) {
 
 	auto serializedMaze = make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh");
 
