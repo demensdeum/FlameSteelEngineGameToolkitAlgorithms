@@ -22,6 +22,36 @@ shared_ptr<string> FSGTAMazeObjectGenerator::generateCube(int x, int y, shared_p
 	return serializedModel;
 }
 
+shared_ptr<string> FSGTAMazeObjectGenerator::generatePlane(float width, float height, shared_ptr<string> textureName) {
+
+	shared_ptr<string> serializedModel = make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh");
+	//putTopWallAtXY(serializedModel, 0, 0, 0);
+
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, width, height, 0, 1, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, width, 0, 0, 1, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, 0, 0, 0, 0, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, 0, height, 0, 0, 0);
+
+	serializedModel->append(string("\nIndex = "));
+	serializedModel->append(to_string(0));
+	serializedModel->append(", ");
+	serializedModel->append(to_string(2));
+	serializedModel->append(", ");
+	serializedModel->append(to_string(1));
+
+	serializedModel->append(string("\nIndex = "));
+	serializedModel->append(to_string(2));
+	serializedModel->append(", ");
+	serializedModel->append(to_string(0));
+	serializedModel->append(", ");
+	serializedModel->append(to_string(3));
+
+	serializedModel->append(string("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/"));
+	serializedModel->append(*textureName);
+
+	return serializedModel;
+}
+
 shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMap) {
 
 	auto serializedMaze = make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh");
@@ -213,7 +243,7 @@ void FSGTAMazeObjectGenerator::putDownWallAtXY(shared_ptr<string> serializedMaze
 
 }
 
-void FSGTAMazeObjectGenerator::putDotAtXYZ(shared_ptr<string> serializedMaze, int x, int y, int z, int u, int v) {
+void FSGTAMazeObjectGenerator::putDotAtXYZ(shared_ptr<string> serializedMaze, float x, float y, float z, float u, float v) {
 
 	serializedMaze->append(string("\nVertex - x = "));
 	serializedMaze->append(to_string(x));

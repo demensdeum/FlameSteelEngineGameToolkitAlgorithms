@@ -23,6 +23,7 @@ class FSGTAMazeObjectGenerator {
 public:
 	static shared_ptr<Object> generate(shared_ptr<GameMap> gameMap);
 	static shared_ptr<string> generateCube(int x, int y, shared_ptr<string> textureName);
+	static shared_ptr<string> generatePlane(float width, float height, shared_ptr<string> textureName);
 
 private:
 	static void putFloorAtXY(shared_ptr<string> serializedMaze, int x, int y, int dotsCount);
@@ -31,7 +32,7 @@ private:
 	static void putTopWallAtXY(shared_ptr<string> serializedMaze, int x, int y, int dotsCount);
 	static void putDownWallAtXY(shared_ptr<string> serializedMaze, int x, int y, int dotsCount);
 
-	static void putDotAtXYZ(shared_ptr<string> serializedMaze, int x, int y, int z, int u, int v);
+	static void putDotAtXYZ(shared_ptr<string> serializedMaze, float x, float y, float z, float u, float v);
 
 };
 
