@@ -17,7 +17,7 @@ namespace Algorithms {
 
 class CursorControllerDelegate;
 
-class CursorController: public Controller {
+class CursorController: public Controller, public enable_shared_from_this<CursorController> {
 
 public:
 	CursorController(shared_ptr<Object> cursor, shared_ptr<FSEGTInputController> inputController);

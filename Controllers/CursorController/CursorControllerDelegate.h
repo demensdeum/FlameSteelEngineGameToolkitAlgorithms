@@ -29,7 +29,7 @@ namespace Algorithms {
 
 class CursorControllerDelegate {
 public:
-	virtual void cursorControllerDidUpdateCursor(CursorController *cursorController, shared_ptr<Object> cursor);
+	virtual void cursorControllerDidUpdateCursor(shared_ptr<CursorController> cursorController, shared_ptr<Object> cursor);
 };
 };
 };

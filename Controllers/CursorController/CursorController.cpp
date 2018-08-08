@@ -25,6 +25,6 @@ void CursorController::step() {
 
 	if (delegateObject.get() != nullptr) {
 
-		delegateObject->cursorControllerDidUpdateCursor(this, cursor);
+		delegateObject->cursorControllerDidUpdateCursor(shared_from_this(), cursor);
 	}
 };
