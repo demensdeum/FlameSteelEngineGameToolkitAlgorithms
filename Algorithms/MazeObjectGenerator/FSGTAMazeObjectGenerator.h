@@ -33,7 +33,6 @@ private:
 	static void putTopWallAtXYZWidthHeightUV(shared_ptr<string> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
 	static void putDownWallAtXYZWidthHeightUV(shared_ptr<string> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
 
-
 	static void putDotAtXYZ(shared_ptr<string> serializedMaze, float x, float y, float z, float u, float v);
 
 };

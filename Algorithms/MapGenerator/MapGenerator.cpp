@@ -58,14 +58,6 @@ shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> 
     exit(1);
   }
 
-  if (objectsContext.get() == nullptr) {
-
-    cout << "DMMapGenerator: cannot generate map - objectsContext are nullptr"
-         << endl;
-
-    exit(1);
-  }
-
   auto gameMap = make_shared<GameMap>();
 
   auto solidTileIndex = params->solidTileIndex;
@@ -106,11 +98,14 @@ shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> 
     cursorY = gameMap->height - 2;
   }
 
-  objectsContext->removeAllObjects();
+	if (objectsContext.get() != nullptr) {
+	  objectsContext->removeAllObjects();
+	}
 
   MapGenerator::drawFreeTilesAtXY(gameMap, params, cursorX, cursorY, objectsContext);
 
-	auto startPoint = FSEGTFactory::makeOnSceneObject(
+	if (objectsContext.get() != nullptr) {
+		auto startPoint = FSEGTFactory::makeOnSceneObject(
             make_shared<string>(ConstMapGameplayEntityClass.c_str()),
             make_shared<string>(ConstMapEntityStartPoint.c_str()),
             shared_ptr<string>(),
@@ -121,7 +116,8 @@ shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> 
             0, 0, 0,
             0);    	
 
-	objectsContext->addObject(startPoint);
+		objectsContext->addObject(startPoint);
+	}
 
   for (auto x = 0; x < maxIterations; x++) {
 
@@ -260,7 +256,7 @@ void MapGenerator::putObjectAtXYIfCan(shared_ptr<GameMap> gameMap,
 {
 	auto objects = params->objects;
 
-	if (objects->size() > 0 && FSCUtils::FSCRandomInt(params->gameplayObjectRespawnChance) == 1)
+	if (objects.get() != nullptr && objects->size() > 0 && FSCUtils::FSCRandomInt(params->gameplayObjectRespawnChance) == 1)
 	{
 		auto object = objects->objectAtIndex(0);
 
@@ -275,12 +271,7 @@ void MapGenerator::putObjectAtXYIfCan(shared_ptr<GameMap> gameMap,
 
 	auto enemies = params->enemies;
 
-	if (enemies.get() == nullptr)
-	{
-		throw logic_error("Enemies are nil in map parameters");
-	}
-
-	if (enemies->size() > 0 && FSCUtils::FSCRandomInt(params->enemyRespawnChance) == 1)
+	if (enemies.get() != nullptr && enemies->size() > 0 && FSCUtils::FSCRandomInt(params->enemyRespawnChance) == 1)
 	{
 		auto enemy = enemies->objectAtIndex(0);
 

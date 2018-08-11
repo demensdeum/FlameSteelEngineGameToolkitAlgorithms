@@ -80,13 +80,18 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 
 			if (tile == 0) {
 
-				FSGTAMazeObjectGenerator::putFloorAtXYZWidthHeightUV(serializedMaze, x, 0, z, 1, 1, 0, 1, dotsCount);
+				FSGTAMazeObjectGenerator::putFloorAtXYZWidthHeightUV(serializedMaze, x, 0, z, 
+																											  1, 1, 
+																											  0, 1, 
+																											  dotsCount);
 
 				dotsCount += 4;
 
 				if (gameMap->getTileIndexAtXY(x-1,z) == 1) {
 
-					FSGTAMazeObjectGenerator::putLeftWallAtXYZWidthHeightUV(serializedMaze, x, 0, z, 1, 1, 0, 1, dotsCount);
+					FSGTAMazeObjectGenerator::putLeftWallAtXYZWidthHeightUV(serializedMaze, x, 0, z,
+																													 1, 1,
+																													 0, 1, dotsCount);
 
 					dotsCount += 4;					
 
@@ -117,13 +122,14 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 				}
 
 			}
-
 			//cout << tile;
 		}
 		//cout << endl;
 	}
 
 	serializedMaze->append(string("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/com.demensdeum.testenvironment.blocktextue.bmp"));
+
+	cout << "serializedMaze: " << serializedMaze->c_str() << endl;
 
 	auto maze = FSEGTFactory::makeOnSceneObject(
             make_shared<string>("scene object"),
@@ -136,65 +142,67 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 		0,0,0,
             0);
 
+	//auto maze = FSGTAMazeObjectGenerator::generatePlane(8, 6, make_shared<string>("com.demensdeum.deathmaskgame.sky.bmp"));
+
 	return maze;
 
 }
 
 void FSGTAMazeObjectGenerator::putFloorAtXYZWidthHeightUV(shared_ptr<string> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 0, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, u, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z - height, u, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z - height, 0, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 1, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, 1, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z + height, 0, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z + height, 0, 0);
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount));
+	serializedMaze->append(to_string(dotsCount + 0));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 2));
 	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 1));
-	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount + 2));
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount + 3));
-	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount));
-	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 2));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 0));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 3));
 
 }
 
 void FSGTAMazeObjectGenerator::putLeftWallAtXYZWidthHeightUV(shared_ptr<string> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, height, y, 0, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, 0, y, u, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, 0, y - width, u, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, height, y - width, 0, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + 1, z, 1, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 1, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z + height, 0, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + 1, z + height, 0, 0);
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount));
+	serializedMaze->append(to_string(dotsCount + 0));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 2));
 	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 1));
-	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount + 2));
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount + 3));
-	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount));
-	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 2));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 0));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 3));
 
 }
 
 void FSGTAMazeObjectGenerator::putRightWallAtXYZWidthHeightUV(shared_ptr<string> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, height, y, 0, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, 0, y, u, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, 0, y - width, u, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, height, y - width, 0, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + 1, y, z, 1, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + 1, z, 1, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + 1, z + height, 0, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + 1, y, z + height, 0, 0);
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount));
+	serializedMaze->append(to_string(dotsCount + 0));
 	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 2));
 	serializedMaze->append(", ");
@@ -203,7 +211,7 @@ void FSGTAMazeObjectGenerator::putRightWallAtXYZWidthHeightUV(shared_ptr<string>
 	serializedMaze->append(string("\nIndex = "));
 	serializedMaze->append(to_string(dotsCount + 2));
 	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount));
+	serializedMaze->append(to_string(dotsCount + 0));
 	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 3));
 
@@ -211,13 +219,13 @@ void FSGTAMazeObjectGenerator::putRightWallAtXYZWidthHeightUV(shared_ptr<string>
 
 void FSGTAMazeObjectGenerator::putTopWallAtXYZWidthHeightUV(shared_ptr<string> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, height, y, 0, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, 0, y, u, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, 0, y, u, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, height, y, 0, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + 1, z, 1, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + 1, z, 1, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, 0, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 0, 0);
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount));
+	serializedMaze->append(to_string(dotsCount + 0));
 	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 2));
 	serializedMaze->append(", ");
@@ -226,32 +234,32 @@ void FSGTAMazeObjectGenerator::putTopWallAtXYZWidthHeightUV(shared_ptr<string> s
 	serializedMaze->append(string("\nIndex = "));
 	serializedMaze->append(to_string(dotsCount + 2));
 	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount));
+	serializedMaze->append(to_string(dotsCount + 0));
 	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount + 3));	
+	serializedMaze->append(to_string(dotsCount + 3));
 
 }
 
 void FSGTAMazeObjectGenerator::putDownWallAtXYZWidthHeightUV(shared_ptr<string> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, height, z, u, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, v, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, v, u);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, height, z, u, u);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z + 1, 1, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z + 1, 1, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + 1, z + height, 0, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + 1, z + height, 0, 0);
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount));
+	serializedMaze->append(to_string(dotsCount + 0));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 2));
 	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 1));
-	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount + 2));
 
 	serializedMaze->append(string("\nIndex = "));
-	serializedMaze->append(to_string(dotsCount + 3));
-	serializedMaze->append(", ");
-	serializedMaze->append(to_string(dotsCount));
-	serializedMaze->append(", ");
 	serializedMaze->append(to_string(dotsCount + 2));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 0));
+	serializedMaze->append(", ");
+	serializedMaze->append(to_string(dotsCount + 3));
 
 }
 
