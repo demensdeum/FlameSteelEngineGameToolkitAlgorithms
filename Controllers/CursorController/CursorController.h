@@ -1,7 +1,7 @@
 #ifndef FSEGTACURSORCONTROLLER_ENABLED
 #define FSEGTACURSORCONTROLLER_ENABLED
 
-#include <FlameSteelFramework/FlameSteelCore/Controller.h>
+#include <FlameSteelCore/Controller.h>
 
 namespace FlameSteelCore {
 class Object;
