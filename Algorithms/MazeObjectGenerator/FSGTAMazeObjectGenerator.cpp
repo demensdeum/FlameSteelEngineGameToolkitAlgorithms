@@ -300,9 +300,9 @@ void FSGTAMazeObjectGenerator::putTopWallAtXYZWidthHeightUV(shared_ptr<Serialize
 void FSGTAMazeObjectGenerator::putDownWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
 
 	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 0, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, 0, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, u, v);
 	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + height, z, u, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y+ height, z, u, v);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, 0, 0);
 
 	serializedMaze->append(make_shared<string>(string("\nIndex = ")));
 	serializedMaze->append(make_shared<string>(to_string(dotsCount + 0)));
