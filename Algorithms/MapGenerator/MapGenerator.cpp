@@ -189,6 +189,24 @@ shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> 
 
 	objectsContext->addObject(endPoint);
 
+	auto enemies = params->enemies;
+
+	while (enemies.get() != nullptr && enemies->size() > 0)
+	{
+		auto enemy = enemies->objectAtIndex(0);
+
+		auto enemyPosition = FSEGTUtils::getObjectPosition(enemy);
+		enemyPosition->x = cursorX;
+		enemyPosition->z = cursorY;
+
+		objectsContext->addObject(enemy);
+
+		enemies->removeObjectAtIndex(0);
+	}
+
+
+
+
   // printout
 
   for (int y = 0; y < gameMap->width; y++) {
