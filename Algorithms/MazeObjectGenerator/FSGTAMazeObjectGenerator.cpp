@@ -37,7 +37,7 @@ shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generateCube(
 	putDownWallAtXYZWidthHeightUV(serializedModel, x, 0, z, 1, 1, 1, 1, 16);
 	putCeilAtXYZWidthHeightUV(serializedModel, x, 0, z, 1, 1, 1, 1, 20);
 
-	serializedModel->append(make_shared<string>("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/"));
+	serializedModel->append(make_shared<string>("\nMaterial - Texture path = data/"));
 	serializedModel->append(textureName);
 
 	return serializedModel;
@@ -52,7 +52,7 @@ shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generateBox(f
 	putRightWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, length, height, u, v, 12);
 	putDownWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, width, height, u, v, 16);
 	putCeilAtXYZWidthHeightUV(serializedModel, 0, 0, 0, width, length, u, v, 20);
-	serializedModel->append(make_shared<string>("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/"));
+	serializedModel->append(make_shared<string>("\nMaterial - Texture path = data/"));
 	serializedModel->append(textureName);
 
 	return serializedModel;	
@@ -82,7 +82,7 @@ shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generatePlane
 	serializedModel->append(make_shared<string>(", "));
 	serializedModel->append(make_shared<string>(to_string(3)));
 
-	serializedModel->append(make_shared<string>("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/"));
+	serializedModel->append(make_shared<string>("\nMaterial - Texture path = data/"));
 	serializedModel->append(textureName);
 
 	return serializedModel;
@@ -157,7 +157,7 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 		//cout << endl;
 	}
 
-	serializedMaze->append(make_shared<string>("\nMaterial - Texture path = /home/demensdeum/Sources/Death-Mask/DeathMask/data/com.demensdeum.testenvironment.blocktextue.bmp"));
+	serializedMaze->append(make_shared<string>("\nMaterial - Texture path = data/com.demensdeum.testenvironment.blocktextue.bmp"));
 
 	cout << "serializedMaze: " << serializedMaze->c_str() << endl;
 
