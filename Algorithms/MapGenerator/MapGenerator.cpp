@@ -174,7 +174,7 @@ shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> 
 
   MapGenerator::drawFreeTilesAtXY(gameMap, params, cursorX, cursorY, objectsContext);
 
-	auto serializedCardModel = FSGTAMazeObjectGenerator::generateCube(0, 0, make_shared<string>("com.demensdeum.testenvironment.teleport.bmp"));
+	auto serializedCardModel = FSGTAMazeObjectGenerator::generateCube(0, 0, make_shared<string>("com.demensdeum.testenvironment.teleport.png"));
 
 	auto endPoint = FSEGTFactory::makeOnSceneObject(
             make_shared<string>(ConstMapGameplayEntityClass.c_str()),

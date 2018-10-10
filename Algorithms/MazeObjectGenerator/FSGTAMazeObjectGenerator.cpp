@@ -157,11 +157,9 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 		//cout << endl;
 	}
 
-	serializedMaze->append(make_shared<string>("\nMaterial - Texture path = data/com.demensdeum.testenvironment.blocktextue.bmp"));
+	serializedMaze->append(make_shared<string>("\nMaterial - Texture path = data/com.demensdeum.testenvironment.blocktextue.png"));
 
 	cout << "serializedMaze: " << serializedMaze->c_str() << endl;
-
-	//serializedMaze = FSGTAMazeObjectGenerator::generateBox(4, 4, 6, 10, 3, make_shared<string>("com.demensdeum.deathmaskgame.skyscraper.bmp"));
 
 	auto maze = FSEGTFactory::makeOnSceneObject(
             make_shared<string>("scene object"),
@@ -174,9 +172,6 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 		0,0,0,
             0);
 
-	
-
-	//auto maze = FSGTAMazeObjectGenerator::generatePlane(8, 6, make_shared<string>("com.demensdeum.deathmaskgame.sky.bmp"));
 
 	return maze;
 
