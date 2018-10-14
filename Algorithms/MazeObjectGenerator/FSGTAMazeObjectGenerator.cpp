@@ -59,14 +59,14 @@ shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generateBox(f
 
 }
 
-shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generatePlane(float width, float height, shared_ptr<string> textureName) {
+shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generatePlane(float width, float height, shared_ptr<string> textureName, float diffX, float diffY) {
 
 	auto serializedModel = make_shared<SerializedModelConstructable>(make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh"));
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, width, height, 0, 1, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, width, 0, 0, 1, 1);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, 0, 0, 0, 0, 1);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, 0, height, 0, 0, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, width + diffX, height + diffY, 0, 1, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, width + diffX, diffY, 0, 1, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, diffX, diffY, 0, 0, 1);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedModel, diffX, height  + diffY, 0, 0, 0);
 
 	serializedModel->append(make_shared<string>("\nIndex = "));
 	serializedModel->append(make_shared<string>(to_string(0)));
