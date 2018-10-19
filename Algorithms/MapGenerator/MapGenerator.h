@@ -11,8 +11,8 @@
  * Created on April 25, 2017, 10:33 AM
  */
 
-#ifndef FSEGTAMAPGENERATOR_H
-#define FSEGTAGENERATOR_H
+#ifndef FSEGTAMAPGENERATOR_H_
+#define FSEGTAMAPGENERATOR_H_
 
 class Objects;
 namespace FlameSteelEngine {
