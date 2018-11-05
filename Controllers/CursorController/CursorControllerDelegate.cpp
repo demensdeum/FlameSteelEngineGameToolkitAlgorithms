@@ -5,6 +5,6 @@ using namespace FlameSteelEngine::GameToolkit::Algorithms;
 
 void CursorControllerDelegate::cursorControllerDidUpdateCursor(shared_ptr<CursorController> cursorController, shared_ptr<Object> cursor) {
 
-	cout << "Unused void cursorControllerDidUpdateCursor(shared_ptr<CursorController> cursorController, shared_ptr<Object> cursor)" << endl;
+	//cout << "Unused void cursorControllerDidUpdateCursor(shared_ptr<CursorController> cursorController, shared_ptr<Object> cursor)" << endl;
 
 };

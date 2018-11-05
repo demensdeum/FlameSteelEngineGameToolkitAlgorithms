@@ -53,7 +53,7 @@ shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> 
 
   if (params.get() == nullptr) {
 
-    cout << "DMMapGenerator: cannot generate map - params are nullptr" << endl;
+    //cout << "DMMapGenerator: cannot generate map - params are nullptr" << endl;
 
     exit(1);
   }
@@ -221,10 +221,10 @@ shared_ptr<GameMap> MapGenerator::generate(shared_ptr<FSEGTAMapGeneratorParams> 
         continue;
       }
 
-      //cout << std::to_string(tileIndex);
+      ////cout << std::to_string(tileIndex);
     }
 
-    //cout << endl;
+    ////cout << endl;
   }
 
   return gameMap;

@@ -92,7 +92,7 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 
 	auto serializedMaze = make_shared<SerializedModelConstructable>(make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh"));
 
-	//cout << "Map Object Generator" << endl;
+	////cout << "Map Object Generator" << endl;
 
 	int dotsCount = 0;
 
@@ -152,14 +152,14 @@ shared_ptr<Object> FSGTAMazeObjectGenerator::generate(shared_ptr<GameMap> gameMa
 				}
 
 			}
-			//cout << tile;
+			////cout << tile;
 		}
-		//cout << endl;
+		////cout << endl;
 	}
 
 	serializedMaze->append(make_shared<string>("\nMaterial - Texture path = data/com.demensdeum.testenvironment.blocktextue.png"));
 
-	cout << "serializedMaze: " << serializedMaze->c_str() << endl;
+	//cout << "serializedMaze: " << serializedMaze->c_str() << endl;
 
 	auto maze = FSEGTFactory::makeOnSceneObject(
             make_shared<string>("scene object"),
