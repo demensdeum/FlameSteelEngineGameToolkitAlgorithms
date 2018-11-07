@@ -32,10 +32,15 @@ shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generateSkybo
 
 	auto serializedModel = make_shared<SerializedModelConstructable>(make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh"));	
 
-	putLeftWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, 1, 1, 1, 1, 0);
-	putRightWallAtXYZWidthHeightUV(serializedModel, 1, 0, 0, 1, 1, 1, 1, 4);
-	putTopWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, 1, 1, 1, 1, 8);
-	putDownWallAtXYZWidthHeightUV(serializedModel, 0, 0, 1, 1, 1, 1, 1, 12);
+	float startU = 0;
+	float startV = 0;
+	float endU = 1;
+	float endV = 1;
+
+	putLeftWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, 1, 1, endU, endV, 0, startU, startV);
+	putTopWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, 1, 1, endU, endV, 4, startU, startV);
+	putRightWallAtXYZWidthHeightUV(serializedModel, 1, 0, 0, 1, 1, endU, endV, 8, startU, startV);
+	putDownWallAtXYZWidthHeightUV(serializedModel, 0, 0, 1, 1, 1, endU, endV, 12, startU, startV);
 
 	serializedModel->append(make_shared<string>("\nMaterial - Texture path = data/"));
 	serializedModel->append(textureName);
@@ -239,12 +244,12 @@ void FSGTAMazeObjectGenerator::putCeilAtXYZWidthHeightUV(shared_ptr<SerializedMo
 
 }
 
-void FSGTAMazeObjectGenerator::putLeftWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
+void FSGTAMazeObjectGenerator::putLeftWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU, float startV) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, 0, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 0, v);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, startU, startV);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, startU, v);
 	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z + width, u, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z + width, u, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z + width, u, startV);
 
 	serializedMaze->append(make_shared<string>("\nIndex = "));
 	serializedMaze->append(make_shared<string>(to_string(dotsCount + 0)));
@@ -262,11 +267,11 @@ void FSGTAMazeObjectGenerator::putLeftWallAtXYZWidthHeightUV(shared_ptr<Serializ
 
 }
 
-void FSGTAMazeObjectGenerator::putRightWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
+void FSGTAMazeObjectGenerator::putRightWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU, float startV) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 0, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, 0, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z + width, u, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, startU, v);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, startU, startV);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z + width, u, startV);
 	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z + width, u, v);
 
 	serializedMaze->append(make_shared<string>("\nIndex = "));
@@ -285,11 +290,11 @@ void FSGTAMazeObjectGenerator::putRightWallAtXYZWidthHeightUV(shared_ptr<Seriali
 
 }
 
-void FSGTAMazeObjectGenerator::putTopWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
+void FSGTAMazeObjectGenerator::putTopWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU, float startV) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 0, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, 0, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + height, z, u, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, startU, v);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, startU, startV);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + height, z, u, startV);
 	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, u, v);
 
 	serializedMaze->append(make_shared<string>(string("\nIndex = ")));
@@ -308,12 +313,12 @@ void FSGTAMazeObjectGenerator::putTopWallAtXYZWidthHeightUV(shared_ptr<Serialize
 
 }
 
-void FSGTAMazeObjectGenerator::putDownWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount) {
+void FSGTAMazeObjectGenerator::putDownWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU, float startV) {
 
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, 0, v);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y, z, startU, v);
 	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y, z, u, v);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + height, z, u, 0);
-	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, 0, 0);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x + width, y + height, z, u, startV);
+	FSGTAMazeObjectGenerator::putDotAtXYZ(serializedMaze, x, y + height, z, startU, startV);
 
 	serializedMaze->append(make_shared<string>(string("\nIndex = ")));
 	serializedMaze->append(make_shared<string>(to_string(dotsCount + 0)));

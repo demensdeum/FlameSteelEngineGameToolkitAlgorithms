@@ -51,10 +51,10 @@ public:
 private:
 	static void putCeilAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
 	static void putFloorAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
-	static void putLeftWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
-	static void putRightWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
-	static void putTopWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
-	static void putDownWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount);
+	static void putLeftWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU = 0, float startV = 0);
+	static void putRightWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU = 0, float startV = 0);
+	static void putTopWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU = 0, float startV = 0);
+	static void putDownWallAtXYZWidthHeightUV(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float width, float height, float u, float v, int dotsCount, float startU = 0, float startV = 0);
 
 	static void putDotAtXYZ(shared_ptr<SerializedModelConstructable> serializedMaze, float x, float y, float z, float u, float v);
 
