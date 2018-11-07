@@ -43,6 +43,7 @@ class FSGTAMazeObjectGenerator {
 
 public:
 	static shared_ptr<Object> generate(shared_ptr<GameMap> gameMap);
+	static shared_ptr<SerializedModelConstructable> generateSkybox(shared_ptr<string> textureName);
 	static shared_ptr<SerializedModelConstructable> generateCube(int x, int z, shared_ptr<string> textureName);
 	static shared_ptr<SerializedModelConstructable> generatePlane(float width, float height, shared_ptr<string> textureName, float diffX = 0, float diffY = 0);
 	static shared_ptr<SerializedModelConstructable> generateBox(float width, float height, float length, float u, float v, shared_ptr<string> textureName);

@@ -27,6 +27,19 @@ const char* SerializedModelConstructable::c_str() {
 	return text->c_str();
 }
 
+shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generateSkybox(shared_ptr<string> textureName)
+{
+
+	auto serializedModel = make_shared<SerializedModelConstructable>(make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh"));	
+
+	putLeftWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, 1, 1, 1, 1, 0);
+
+	serializedModel->append(make_shared<string>("\nMaterial - Texture path = data/"));
+	serializedModel->append(textureName);
+
+	return serializedModel;
+}
+
 shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generateCube(int x, int z, shared_ptr<string> textureName)
 {
 	auto serializedModel = make_shared<SerializedModelConstructable>(make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh"));
