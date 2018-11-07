@@ -33,6 +33,9 @@ shared_ptr<SerializedModelConstructable> FSGTAMazeObjectGenerator::generateSkybo
 	auto serializedModel = make_shared<SerializedModelConstructable>(make_shared<string>("Flame Steel Graphics Library Model @ Demens Deum\nModel version = Happy Sasquatch (1.0)\nMesh"));	
 
 	putLeftWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, 1, 1, 1, 1, 0);
+	putRightWallAtXYZWidthHeightUV(serializedModel, 1, 0, 0, 1, 1, 1, 1, 4);
+	putTopWallAtXYZWidthHeightUV(serializedModel, 0, 0, 0, 1, 1, 1, 1, 8);
+	putDownWallAtXYZWidthHeightUV(serializedModel, 0, 0, 1, 1, 1, 1, 1, 12);
 
 	serializedModel->append(make_shared<string>("\nMaterial - Texture path = data/"));
 	serializedModel->append(textureName);
